@@ -13,7 +13,7 @@ export default function TabOneScreen() {
   return (
     <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.container}>
-        <Text style={styles.title}>Tab One</Text>
+        <Text style={styles.title}>Tab One details</Text>
         <View
           style={styles.separator}
           lightColor="#eee"
@@ -27,7 +27,7 @@ export default function TabOneScreen() {
           title="Go to Main"
           onPress={() => navigation.navigate("main")}
         />
-        <EditScreenInfo path="app/(tabs)/index.tsx" />
+        {/* <EditScreenInfo path="app/(tabs)/index.tsx" /> */}
       </View>
     </ScrollView>
   );
