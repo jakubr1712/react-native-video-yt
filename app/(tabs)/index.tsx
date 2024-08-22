@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import EditScreenInfo from "@/components/EditScreenInfo";
 import { ScrollView } from "react-native";
 
 import React from "react";
@@ -20,14 +19,17 @@ export default function TabOneScreen() {
           darkColor="rgba(255,255,255,0.1)"
         />
         <Button
-          title="Go to Search"
-          onPress={() => navigation.navigate("search")}
-        />
-        <Button
           title="Go to Main"
           onPress={() => navigation.navigate("main")}
         />
-        <EditScreenInfo path="app/(tabs)/index.tsx" />
+        <Button
+          title="Go to Searchs"
+          onPress={() => navigation.navigate("search")}
+        />
+        <Button
+          title="Go to video-details"
+          onPress={() => navigation.navigate("video-details")}
+        />
       </View>
     </ScrollView>
   );

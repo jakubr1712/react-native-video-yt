@@ -1,30 +1,23 @@
-import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, Image } from "react-native";
-
-import EditScreenInfo from "@/components/EditScreenInfo";
+import { StyleSheet, Image } from "react-native";
 import { Text, View } from "@/components/Themed";
-
+import { useRouter } from "expo-router";
 import CommonButton from "../components/CommonButton";
 
-
-
 export default function LoginScreen() {
+  const router = useRouter();
+
   const handleButtonPress = () => {
-    console.log("Button pressed");
+    router.replace(`/main`);
   };
   return (
     <View style={styles.container}>
       <Image
-        source={{
-          uri: "https://raw.githubusercontent.com/ShanCodeWay/ShanCodeWay/main/linkdean.png",
-        }}
+        source={require("../assets/login/logo.png")}
         style={styles.banner}
         resizeMode="contain"
       />
       <Image
-        source={{
-          uri: "https://raw.githubusercontent.com/ShanCodeWay/ShanCodeWay/main/linkdean.png",
-        }}
+        source={require("../assets/login/app-icon.png")}
         style={styles.banner}
         resizeMode="contain"
       />

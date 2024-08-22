@@ -59,6 +59,7 @@ function RootLayoutNav() {
         <Stack.Screen name="modal" options={{ presentation: "modal" }} />
         <Stack.Screen name="main" options={{}} />
         <Stack.Screen name="search" options={{}} />
+        <Stack.Screen name="video-details" options={{}} />
       </Stack>
     </ThemeProvider>
   );
