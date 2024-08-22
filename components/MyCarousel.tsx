@@ -9,8 +9,11 @@ import {
   Linking,
 } from "react-native";
 import Carousel from "react-native-snap-carousel";
+import { useRouter } from "expo-router";
+import CommonButton from "../components/CommonButton";
+import { searchYouTubeVideos } from "../api/searchYouTubeVideos";
 
-interface CardData {
+export interface CardData {
   title: string;
   image: string;
   description: string;
@@ -18,7 +21,7 @@ interface CardData {
 }
 
 interface CarouselProps {
-  data: CardData[];
+  query: string;
 }
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
@@ -41,34 +44,46 @@ const CarouselCardItem: React.FC<{ item: CardData; index: number }> = ({
   );
 };
 
-import CommonButton from "../components/CommonButton";
+const MyCarousel: React.FC<CarouselProps> = ({ query }) => {
+  const router = useRouter();
 
-const MyCarousel: React.FC<CarouselProps> = ({ data }) => {
   const handleButtonPress = () => {
-    console.log("Button pressed");
+    router.replace(`/search?query=${query}`);
   };
+
+  const [videos, setVideos] = React.useState<CardData[]>([]);
+
+  const handleSearchChange = (query: string) => {
+    if (query.length > 3) {
+      searchYouTubeVideos(query, 3).then(setVideos);
+    }
+  };
+
+  React.useEffect(() => {
+    query && handleSearchChange(query);
+  }, []);
+
   return (
     <View style={styles.cardsContainer}>
       <CommonButton
         type="1"
-        title="Log in as guest"
+        title="Show more"
         onPress={handleButtonPress}
-        width="50%"
-        height={45}
+        height={35}
         backgroundColor="royalblue"
-        borderRadius={25}
+        borderRadius={10}
         textAlign="center"
         textColor="seashell"
         fontFamily="Arial"
         textSize={25}
       />
       <Carousel
-        data={data}
+        data={videos}
         renderItem={({ item, index }) => (
           <CarouselCardItem item={item} index={index} />
         )}
         sliderWidth={screenWidth}
-        itemWidth={screenWidth * 0.8} // Szerokość karty jako 80% szerokości ekranu
+        itemWidth={screenWidth * 0.8}
         useScrollView={true}
       />
     </View>
@@ -82,8 +97,8 @@ const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: "white",
     borderRadius: 8,
-    width: "100%", // Szerokość dopasowana do itemWidth w Carousel
-    paddingBottom: 20, // Miejsce na opis i przycisk
+    width: "100%",
+    paddingBottom: 20,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -95,7 +110,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: screenWidth * 0.5, // Proporcjonalna wysokość obrazka (50% szerokości ekranu)
+    height: screenWidth * 0.5,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
   },

@@ -1,15 +1,19 @@
 import React from "react";
-import { TextInput, StyleSheet, Platform } from "react-native";
-import { Text, View } from "@/components/Themed";
-
+import { TextInput, StyleSheet } from "react-native";
+import { View } from "@/components/Themed";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const SearchBar = () => {
+  const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = React.useState("");
+
+  const handleSearchSubmit = () => {
+    navigation.navigate("search", { query: searchQuery });
+  };
 
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
-    // Tutaj możesz dodać logikę do wyszukiwania lub filtracji danych
   };
 
   return (
@@ -25,13 +29,14 @@ const SearchBar = () => {
         value={searchQuery}
         onChangeText={handleSearchChange}
         style={styles.searchInput}
+        onSubmitEditing={handleSearchSubmit}
+        returnKeyType="search"
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  // pozostałe style
   searchContainer: {
     flexDirection: "row",
     width: "100%",

@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-// Define Props type
 interface CommonButtonProps {
-  type: "0" | "1"; // type can only be "0" or "1"
+  type: "0" | "1";
   height?: any;
   width?: any;
   backgroundColor?: string;

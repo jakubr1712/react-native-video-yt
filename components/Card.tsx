@@ -9,7 +9,7 @@ import {
   Linking,
 } from "react-native";
 
-interface CardData {
+export interface CardData {
   title: string;
   image: string;
   description: string;
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: "white",
     borderRadius: 8,
-    width: "100%", // Szerokość dopasowana do itemWidth w Carousel
-    paddingBottom: 20, // Miejsce na opis i przycisk
+    width: "100%",
+    paddingBottom: 20,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: screenWidth * 0.5, // Proporcjonalna wysokość obrazka (50% szerokości ekranu)
+    height: screenWidth * 0.5,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
   },
